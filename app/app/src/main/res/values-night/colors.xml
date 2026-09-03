@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand Palette (Same for Night for Industrial look) -->
+    <color name="primary">#39FF14</color>
+    <color name="primary_variant">#2ECC71</color>
+    <color name="secondary">#FF8C00</color>
+    <color name="secondary_variant">#E67E22</color>
+
+    <color name="background">#0A0A0A</color>
+    <color name="surface">#1A1A1A</color>
+    <color name="surface_variant">#242424</color>
+
+    <color name="on_primary">#000000</color>
+    <color name="on_secondary">#000000</color>
+    <color name="on_background">#FFFFFF</color>
+    <color name="on_surface">#FFFFFF</color>
+    <color name="text_muted">#B0B0B0</color>
+
+    <color name="error">#FF3D00</color>
+    <color name="on_error">#FFFFFF</color>
+    <color name="status_connected">#39FF14</color>
+    <color name="status_disconnected">#FF3D00</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="grey_200">#1A1A1A</color>
+    <color name="grey_600">#B0B0B0</color>
+
+    <color name="card_stroke">#33FFFFFF</color>
+    <color name="industrial_accent">#1AFFFFFF</color>
+    <color name="overlay_background">#E60A0A0A</color>
+    <color name="confirmation_overlay_background">#F20A0A0A</color>
+</resources>

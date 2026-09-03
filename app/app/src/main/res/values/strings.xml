@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">SNM POS</string>
+    <string name="logo_desc">SNM POS Logo</string>
+
+    <string name="nav_pos">POS</string>
+    <string name="nav_receipt">RECEIPT</string>
+    <string name="nav_custom">CUSTOM</string>
+    <string name="nav_settings">SETTINGS</string>
+
+    <string name="new_sale">NEW SALE</string>
+    <string name="item_label">ITEM</string>
+    <string name="price_label">PRICE</string>
+    <string name="item_hint">What are you selling?</string>
+    <string name="price_hint">0.00</string>
+    <string name="add_to_receipt">＋ ADD TO RECEIPT</string>
+
+    <string name="current_receipt">CURRENT RECEIPT</string>
+    <string name="discount_label">DISCOUNT</string>
+    <string name="add_note">ADD NOTE</string>
+    <string name="total_label">TOTAL</string>
+    <string name="print_receipt">PRINT RECEIPT</string>
+    <string name="printing_label">PRINTING...</string>
+
+    <string name="history_title">HISTORY</string>
+    <string name="settings_title">SETTINGS</string>
+    <string name="store_section">STORE</string>
+    <string name="store_name_label">Store Name</string>
+    <string name="address_label">Address</string>
+    <string name="footer_label">Receipt Footer</string>
+    <string name="save_store_info">SAVE STORE INFO</string>
+
+    <string name="printer_section">PRINTER</string>
+    <string name="printer_ready">READY</string>
+    <string name="printed_overlay">PRINTED</string>
+
+    <string name="test_label">TEST</string>
+    <string name="status_label">STATUS</string>
+
+    <string name="custom_print_title">CUSTOM PRINT</string>
+    <string name="print_text_label">PRINT TEXT</string>
+    <string name="print_image_label">PRINT IMAGE</string>
+    <string name="print_both_label">PRINT BOTH</string>
+    <string name="text_to_print_hint">Type anything to print...</string>
+    <string name="alignment_label">ALIGNMENT</string>
+    <string name="font_size_label">FONT SIZE</string>
+    <string name="bold_label">BOLD</string>
+    <string name="select_image">SELECT IMAGE</string>
+</resources>

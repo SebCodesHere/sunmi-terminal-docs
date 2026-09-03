@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_8"
+    app:cardBackgroundColor="@color/surface"
+    app:cardCornerRadius="@dimen/radius_card"
+    app:strokeColor="@color/border_subtle"
+    app:strokeWidth="1dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_16"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvHistoryNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#000142"
+                android:textColor="@color/text"
+                android:textSize="15sp"
+                android:fontFamily="sans-serif-black" />
+
+            <TextView
+                android:id="@+id/tvHistoryDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Today • 15:42"
+                android:textColor="@color/text_muted"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvHistoryTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="€8.00"
+            android:textColor="@color/primary"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-black" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="@dimen/spacing_12"
+            android:src="@android:drawable/ic_media_play"
+            app:tint="@color/text_muted" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
