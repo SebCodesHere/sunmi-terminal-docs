@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".MainActivity">
+
+    <!-- Global Header -->
+    <LinearLayout
+        android:id="@+id/globalHeader"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:background="@color/surface"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/spacing_16"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_logo_snm"
+            app:tint="@color/primary"
+            android:contentDescription="@string/logo_desc" />
+
+        <TextView
+            android:id="@+id/tvHeaderTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_12"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/nav_pos"
+            android:textColor="@color/text"
+            android:textSize="18sp"
+            android:textAllCaps="true"
+            android:letterSpacing="0.1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end|center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/printerStatusIndicator"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/ic_status_dot"
+                android:layout_marginEnd="@dimen/spacing_4" />
+
+            <TextView
+                android:id="@+id/tvPrinterStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/printer_ready"
+                android:textColor="@color/primary"
+                android:textSize="11sp"
+                android:layout_marginEnd="@dimen/spacing_12" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="15:42"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Main Content Frame -->
+    <FrameLayout
+        android:id="@+id/mainContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintTop_toBottomOf="@id/globalHeader">
+
+        <!-- POS Screen -->
+        <ScrollView
+            android:id="@+id/screenCheckout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:visibility="visible">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_20">
+
+                <TextView
+                    android:id="@+id/tvNewSale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="@string/new_sale"
+                    android:textColor="@color/accent_orange"
+                    android:textSize="12sp"
+                    android:letterSpacing="0.2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Item Input -->
+                <TextView
+                    android:id="@+id/labelItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_24"
+                    android:text="@string/item_label"
+                    android:textColor="@color/text_muted"
+                    android:textSize="11sp"
+                    android:letterSpacing="0.1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvNewSale" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilItem"
+                    style="@style/Widget.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_8"
+                    app:hintEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@id/labelItem">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etItemName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/item_hint"
+                        android:inputType="textCapWords"
+                        android:textColor="@color/text"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Price Input -->
+                <TextView
+                    android:id="@+id/labelPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_20"
+                    android:text="@string/price_label"
+                    android:textColor="@color/text_muted"
+                    android:textSize="11sp"
+                    android:letterSpacing="0.1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tilItem" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilPrice"
+                    style="@style/Widget.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_8"
+                    app:hintEnabled="false"
+                    app:prefixText="€"
+                    app:prefixTextColor="@color/primary"
+                    app:layout_constraintTop_toBottomOf="@id/labelPrice">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etItemPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/price_hint"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/text"
+                        android:textSize="24sp"
+                        android:fontFamily="sans-serif-black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAddItem"
+                    style="@style/Widget.App.Button.Primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginTop="@dimen/spacing_24"
+                    android:text="@string/add_to_receipt"
+                    app:layout_constraintTop_toBottomOf="@id/tilPrice" />
+
+                <!-- Current Receipt Section -->
+                <View
+                    android:id="@+id/dividerPOS"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/spacing_32"
+                    android:background="@color/divider"
+                    app:layout_constraintTop_toBottomOf="@id/btnAddItem" />
+
+                <TextView
+                    android:id="@+id/labelCurrentReceipt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_24"
+                    android:text="@string/current_receipt"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    android:fontFamily="sans-serif-black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dividerPOS" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_16"
+                    app:layout_constraintTop_toBottomOf="@id/labelCurrentReceipt"
+                    tools:listitem="@layout/item_cart_new" />
+
+                <LinearLayout
+                    android:id="@+id/totalContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_24"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/rvCart">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/divider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_16"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnDiscount"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/discount_label"
+                            android:textColor="@color/text_muted"
+                            android:textSize="11sp"
+                            app:icon="@android:drawable/ic_menu_edit"
+                            app:iconSize="14dp"
+                            app:iconTint="@color/text_muted"/>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnNote"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/add_note"
+                            android:textColor="@color/text_muted"
+                            android:textSize="11sp"
+                            app:icon="@android:drawable/ic_menu_edit"
+                            app:iconSize="14dp"
+                            app:iconTint="@color/text_muted"/>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/tvDiscountDisplay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-€0.00"
+                            android:textColor="@color/error"
+                            android:textSize="12sp"
+                            android:visibility="gone"
+                            tools:visibility="visible"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_8"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/total_label"
+                            android:textColor="@color/text"
+                            android:textSize="20sp"
+                            android:fontFamily="sans-serif-black" />
+
+                        <TextView
+                            android:id="@+id/tvTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="€0.00"
+                            android:textColor="@color/primary"
+                            android:textSize="24sp"
+                            android:fontFamily="sans-serif-black" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPrint"
+                    style="@style/Widget.App.Button.Primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="@dimen/spacing_24"
+                    android:text="@string/print_receipt"
+                    android:textSize="18sp"
+                    app:icon="@drawable/ic_printer"
+                    app:iconGravity="textStart"
+                    app:layout_constraintTop_toBottomOf="@id/totalContainer"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="@dimen/spacing_24"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <!-- Receipt Preview Screen -->
+        <LinearLayout
+            android:id="@+id/screenReceipts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_20"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/nav_receipt"
+                android:textColor="@color/accent_orange"
+                android:textSize="12sp"
+                android:letterSpacing="0.2"
+                android:layout_marginBottom="@dimen/spacing_16"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/surface_variant"
+                app:cardCornerRadius="@dimen/radius_card"
+                app:strokeColor="@color/border_subtle"
+                app:strokeWidth="1dp">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/spacing_16">
+
+                    <TextView
+                        android:id="@+id/tvReceiptPreview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_receipt_paper"
+                        android:fontFamily="monospace"
+                        android:padding="@dimen/spacing_16"
+                        android:textColor="@color/primary"
+                        android:textSize="13sp"
+                        android:lineSpacingExtra="4dp" />
+                </ScrollView>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnClearReceipt"
+                style="@style/Widget.App.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginTop="@dimen/spacing_20"
+                android:text="CLEAR ALL ITEMS"
+                android:textColor="@color/error" />
+
+        </LinearLayout>
+
+        <!-- Custom Print Screen -->
+        <ScrollView
+            android:id="@+id/screenCustom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="@string/custom_print_title"
+                    android:textColor="@color/accent_orange"
+                    android:textSize="12sp"
+                    android:letterSpacing="0.2"
+                    android:layout_marginBottom="@dimen/spacing_24"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/text_to_print_hint">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etCustomText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:minLines="3"
+                        android:gravity="top" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/spacing_20"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/bold_label"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_20"
+                    android:text="@string/font_size_label"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/toggleFontSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_8"
+                    app:singleSelection="true"
+                    app:checkedButton="@+id/btnFontMedium">
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFontSmall"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="SM" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFontMedium"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="MD" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFontLarge"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="LG" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_20"
+                    android:text="@string/alignment_label"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/toggleAlignment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_8"
+                    app:singleSelection="true"
+                    app:checkedButton="@+id/btnAlignLeft">
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAlignLeft"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="LEFT" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAlignCenter"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="CENTER" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAlignRight"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="RIGHT" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider"
+                    android:layout_marginVertical="@dimen/spacing_24" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSelectImage"
+                    style="@style/Widget.App.Button.Secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:text="@string/select_image"
+                    app:icon="@android:drawable/ic_menu_gallery"
+                    app:iconGravity="textStart" />
+
+                <ImageView
+                    android:id="@+id/ivSelectedImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="@dimen/spacing_12"
+                    android:scaleType="centerInside"
+                    android:background="@color/surface"
+                    android:visibility="gone"
+                    android:contentDescription="Selected Image" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPrintCustom"
+                    style="@style/Widget.App.Button.Primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="@dimen/spacing_24"
+                    android:text="PRINT CUSTOM"
+                    android:textSize="16sp"
+                    app:icon="@drawable/ic_printer"
+                    app:iconGravity="textStart"
+                    android:layout_marginBottom="@dimen/spacing_32" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Settings Screen -->
+        <ScrollView
+            android:id="@+id/screenSettings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="@string/settings_title"
+                    android:textColor="@color/accent_orange"
+                    android:textSize="12sp"
+                    android:letterSpacing="0.2"
+                    android:layout_marginBottom="@dimen/spacing_24"/>
+
+                <!-- Store Settings Group -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/store_section"
+                    android:textColor="@color/primary"
+                    android:textSize="11sp"
+                    android:letterSpacing="0.1" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_8"
+                    app:cardBackgroundColor="@color/surface"
+                    app:cardCornerRadius="@dimen/radius_card"
+                    app:strokeColor="@color/border_subtle"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_16">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.App.TextInputLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/store_name_label">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etStoreName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textCapWords" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.App.TextInputLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_12"
+                            android:hint="@string/address_label">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etStoreAddress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textCapWords" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.App.TextInputLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_12"
+                            android:hint="@string/footer_label">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etFooter"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textCapSentences" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnSaveStore"
+                            style="@style/Widget.App.Button.Secondary"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/button_height"
+                            android:layout_marginTop="@dimen/spacing_16"
+                            android:text="@string/save_store_info" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Printer Group -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_24"
+                    android:text="@string/printer_section"
+                    android:textColor="@color/primary"
+                    android:textSize="11sp"
+                    android:letterSpacing="0.1" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_8"
+                    app:cardBackgroundColor="@color/surface"
+                    app:cardCornerRadius="@dimen/radius_card"
+                    app:strokeColor="@color/border_subtle"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_16">
+
+                        <TextView
+                            android:id="@+id/tvPrinterDetail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sunmi Built-in Printer"
+                            android:textColor="@color/text"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium" />
+
+                        <TextView
+                            android:id="@+id/tvPrinterInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:text="Status: READY"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_16"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnTestPrint"
+                                style="@style/Widget.App.Button.Outlined"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/test_label"
+                                android:layout_marginEnd="@dimen/spacing_8" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnCheckPrinter"
+                                style="@style/Widget.App.Button.Secondary"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/status_label"
+                                android:layout_marginStart="@dimen/spacing_8" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- About -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_32"
+                    android:layout_gravity="center_horizontal"
+                    android:text="SNM POS V1.0"
+                    android:textColor="@color/text_muted"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.2" />
+
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+
+    <!-- Success Overlay -->
+    <LinearLayout
+        android:id="@+id/overlaySuccess"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/overlay_black"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="✓"
+            android:textColor="@color/primary"
+            android:textSize="80sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="0.3"
+            android:text="@string/printed_overlay"
+            android:textColor="@color/primary"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        app:itemIconTint="@color/primary"
+        app:itemTextColor="@color/primary"
+        app:itemBackground="@drawable/bg_pill_navigation"
+        app:itemRippleColor="@color/industrial_accent"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

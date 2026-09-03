@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Masterpiece Palette -->
+    <color name="background">#080B09</color>
+    <color name="surface">#0E1310</color>
+    <color name="surface_variant">#141A16</color>
+    <color name="surface_elevated">#19211C</color>
+
+    <color name="primary">#19D47B</color>
+    <color name="primary_bright">#39F59A</color>
+    <color name="primary_dark">#0B8F52</color>
+
+    <color name="accent_orange">#FF9D3D</color>
+
+    <color name="text">#F4F7F5</color>
+    <color name="text_secondary">#A5B0AA</color>
+    <color name="text_muted">#66716B</color>
+
+    <color name="error">#FF5C5C</color>
+    <color name="on_error">#FFFFFF</color>
+
+    <color name="on_primary">#080B09</color>
+
+    <!-- Utilities -->
+    <color name="border_subtle">#1AFFFFFF</color>
+    <color name="divider">#12FFFFFF</color>
+    <color name="overlay_black">#CC000000</color>
+    <color name="text_on_paper">#333333</color>
+</resources>
